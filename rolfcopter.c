@@ -1,7 +1,14 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int main()
+void clearScreen(void)
+{
+    usleep(100000);
+    const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
+    write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 11);
+}
+
+int main(void)
 {
     while (1)
     {
@@ -26,11 +33,4 @@ int main()
     "        --------/"
         );
     }
-}
-
-void clearScreen()
-{
-    usleep(100000);
-    const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
-    write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
 }
